@@ -88,6 +88,12 @@ GEM
     ffi (1.14.2-x86-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hotwire-rails (0.1.0)
+      hotwire-stimulus-rails
+      rails (>= 6.0.0)
+      turbo-rails
+    hotwire-stimulus-rails (0.1.0)
+      rails (>= 6.0.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     listen (3.3.3)
@@ -127,8 +133,6 @@ GEM
     puma (5.1.1-java)
       nio4r (~> 2.0)
     rack (2.2.3)
-    rack-mini-profiler (2.2.0)
-      rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -163,6 +167,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     regexp_parser (1.8.2)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
@@ -208,6 +213,8 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.0.1)
     tilt (2.0.10)
+    turbo-rails (0.5.0)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2020.4)
@@ -246,11 +253,12 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  hotwire-rails (~> 0.1.0)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-mini-profiler (~> 2.0)
   rails (~> 6.1.0)
+  redis (~> 4.0)
   rspec-rails (~> 4.0.1)
   sass-rails (>= 6)
   selenium-webdriver
