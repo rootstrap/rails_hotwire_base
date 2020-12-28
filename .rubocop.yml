@@ -14,3 +14,5 @@ AllCops:
 Layout/LineLength:
   Exclude:
     - config/environments/production.rb
+    - config/initializers/devise.rb
+    - db/migrate/20201228222132_devise_create_admin_users.rb
