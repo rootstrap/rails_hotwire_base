@@ -50,7 +50,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
+  # Reek is a tool that examines Ruby classes, modules and methods and reports any code smells it finds.
+  gem 'reek', '~> 6.0', '>= 6.0.2'
   # Rubocop with Rootstrap's code style
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
