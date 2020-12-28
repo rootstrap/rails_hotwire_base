@@ -44,6 +44,8 @@ group :development do
   gem 'spring'
   # A code metric tool for rails codes, written in Ruby.
   gem 'rails_best_practices', '~> 1.20'
+  # Reek is a tool that examines Ruby classes, modules and methods and reports any code smells it finds.
+  gem 'reek', '~> 6.0', '>= 6.0.2'
   # Rubocop with Rootstrap's code style
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
