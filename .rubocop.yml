@@ -1,0 +1,16 @@
+inherit_gem:
+  rubocop-rootstrap:
+    - config/rails_edge.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+  SuggestExtensions: false
+
+Layout/LineLength:
+  Exclude:
+    - config/environments/production.rb
