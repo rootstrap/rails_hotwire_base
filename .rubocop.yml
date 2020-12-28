@@ -9,8 +9,6 @@ inherit_mode:
 AllCops:
   Exclude:
     - db/schema.rb
-    - bin/bundle
-    - bin/yarn
   SuggestExtensions: false
 
 Layout/LineLength:
