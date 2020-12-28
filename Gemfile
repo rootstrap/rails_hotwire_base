@@ -42,7 +42,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
+  # A code metric tool for rails codes, written in Ruby.
+  gem 'rails_best_practices', '~> 1.20'
   # Rubocop with Rootstrap's code style
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
