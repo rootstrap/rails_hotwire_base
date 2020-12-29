@@ -18,5 +18,33 @@ module RailsHotwireBase
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.add_autoload_paths_to_load_path = false
+    config.active_job.queue_adapter = :delayed_job
+
+    ActionMailer::Base.smtp_settings = {
+      address: 'smtp.sendgrid.net',
+      authentication: :plain,
+      domain: ENV['SERVER_HOST'],
+      enable_starttls_auto: true,
+      password: ENV['SENDGRID_API_KEY'],
+      port: 587,
+      user_name: 'apikey'
+    }
+    config.action_mailer.default_url_options = { host: ENV['SERVER_HOST'],
+                                                 port: ENV.fetch('PORT', 3000) }
+    config.action_mailer.default_options = {
+      from: 'no-reply@api.com'
+    }
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    end
+
+    # ActiveAdmin needs the following middlewares to work properly.
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Flash
   end
 end
