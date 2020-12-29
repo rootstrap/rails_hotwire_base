@@ -3,7 +3,7 @@ describe ApplicationPolicy do
 
   permissions :update?, :index?, :show?, :create?, :new?, :edit?, :destroy? do
     context 'when is an user' do
-      let(:user) { build(:user) }
+      let(:user) { build(:admin_user) }
 
       it 'denies access' do
         expect(subject).not_to permit(user, user)
@@ -12,7 +12,7 @@ describe ApplicationPolicy do
   end
 
   describe 'scope' do
-    let(:user) { create(:user) }
+    let(:user) { create(:admin_user) }
     let(:mock_model) { double('MockModel', all: true) }
     subject { ApplicationPolicy::Scope.new(user, mock_model).resolve }
 

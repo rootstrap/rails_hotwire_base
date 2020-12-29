@@ -9,14 +9,6 @@ describe Admin::ApplicationPolicy do
         expect(subject).to permit(admin, admin)
       end
     end
-
-    context 'when is a user' do
-      let(:user) { build(:user) }
-
-      it 'denies access' do
-        expect(subject).not_to permit(user, user)
-      end
-    end
   end
 
   describe 'scope' do
