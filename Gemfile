@@ -27,8 +27,16 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # Help to kill N+1 queries and unused eager loading.
+  gem 'bullet', '~> 6.1', '>= 6.1.2'
+  # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer
+  gem 'factory_bot_rails', '~> 6.1'
+  # Combine 'pry' with 'byebug'. Adds 'step', 'next', 'finish', 'continue'
+  # and 'break' commands to control execution.
+  gem 'pry-byebug', '~> 3.9'
+  # Use Pry as your rails console
+  gem 'pry-rails', '~> 0.3.9'
+  # rspec-rails is a testing framework for Rails 5+.
   gem 'rspec-rails', '~> 4.0.1'
 end
 
@@ -44,7 +52,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # A code metric tool for rails codes, written in Ruby.
   gem 'rails_best_practices', '~> 1.20'
-  # Reek is a tool that examines Ruby classes, modules and methods and reports any code smells it finds.
+  # Reek is a tool that examines Ruby classes, modules and methods
+  # and reports any code smells it finds.
   gem 'reek', '~> 6.0', '>= 6.0.2'
   # Rubocop with Rootstrap's code style
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
@@ -56,11 +65,20 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
+  # Adds support for Capybara system testing
   gem 'capybara', '>= 3.26'
+  # To easily generate fake data
+  gem 'faker', '~> 2.15', '>= 2.15.1'
+  # Adds support for selenium driver
   gem 'selenium-webdriver'
+  # Provides RSpec- and Minitest-compatible one-liners to test common Rails functionality
+  gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
+  # Code coverage for Ruby
+  gem 'simplecov', '~> 0.20.0'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
+  gem 'webmock', '~> 3.11'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
