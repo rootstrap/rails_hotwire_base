@@ -5,10 +5,18 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
 
+# The administration framework for Ruby on Rails.
+gem 'activeadmin', '~> 2.9'
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.7', '>= 4.7.3'
+# Adds an object-oriented layer of presentation logic to your Rails apps.
+gem 'draper', '~> 4.0', '>= 4.0.1'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+# Object oriented authorization for Rails applications
+gem 'pundit', '~> 2.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -74,7 +82,7 @@ group :test do
   # Provides RSpec- and Minitest-compatible one-liners to test common Rails functionality
   gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
   # Code coverage for Ruby
-  gem 'simplecov', '~> 0.20.0'
+  gem 'simplecov', '~> 0.20.0', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.

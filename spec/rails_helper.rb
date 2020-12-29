@@ -3,12 +3,15 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 
 SimpleCov.start 'rails' do
-  add_group 'Forms', 'app/forms'
-  add_group 'Policies', 'app/policies'
-  add_group 'Presenters', 'app/presenters'
-  add_filter 'app/admin'
-  add_filter 'config'
+  add_group 'Services', 'app/services'
+  add_group 'Entities', 'app/models/events'
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Jobs', 'app/jobs'
+  add_group 'Helpers', 'app/helpers'
   add_filter 'spec'
+  add_filter 'config'
+  add_filter 'app/admin'
 end
 
 require File.expand_path('../../config/environment', __FILE__)
