@@ -1,6 +1,11 @@
 {
   "name": "rails-hotwire-base",
   "private": true,
+  "scripts": {
+    "css-lint": "stylelint \"app/assets/stylesheets/**/*.scss\"",
+    "js-lint": "eslint \"app/javascript/**/*.js\"",
+    "lint": "npm-run-all --continue-on-error --parallel \"css-lint --fix\" \"js-lint --fix\""
+  },
   "dependencies": {
     "@activeadmin/activeadmin": "^2.9.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
@@ -9,7 +14,6 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "arctic_admin": "^3.2.0",
-    "eslint-config-standard": "^16.0.2",
     "stimulus": "^2.0.0"
   },
   "version": "0.1.0",
@@ -17,6 +21,7 @@
     "eslint": "^7.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "npm-run-all": "^4.1.5",
     "stylelint": "^13.8.0",
     "stylelint-config-sass-guidelines": "^7.1.0",
     "webpack-dev-server": "^3.11.0"
