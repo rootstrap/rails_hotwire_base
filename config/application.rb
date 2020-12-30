@@ -41,10 +41,5 @@ module RailsHotwireBase
       g.test_framework :rspec
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
-
-    # ActiveAdmin needs the following middlewares to work properly.
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
-    config.middleware.use ActionDispatch::Flash
   end
 end
