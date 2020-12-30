@@ -1,0 +1,43 @@
+//----------------------------------*\
+// ABSTRACTS
+// contain rules and functions that govern the styles but are not 
+// visually tangible all by themselves.
+//----------------------------------*/
+
+@import 'abstracts/animations';
+@import 'abstracts/functions';
+@import 'abstracts/layout';
+@import 'abstracts/mixins';
+@import 'abstracts/variables';
+
+//----------------------------------*\
+// ATOMS
+// represent the smallest tangible elements in the website 
+// like colors, fonts, and icons.
+//----------------------------------*/
+
+@import 'atoms/colors';
+@import 'atoms/typography';
+
+//----------------------------------*\
+// BLOCKS
+// are a combination of one or more atoms that 
+// visually render elements in the page like buttons, cards, and labels.
+//----------------------------------*/
+
+//----------------------------------*\
+// COMPONENTS
+// are the more prominent features of the website 
+// which can stand on their own and be reused in different pages.
+//----------------------------------*/
+
+//----------------------------------*\
+// FRAMES
+// contain the bigger layouts that hold components into place, like
+// columns, grids, sections and wrappers.
+//----------------------------------*/
+
+//----------------------------------*\
+// PAGES
+// Page-specific styles are made in this directory. 
+//----------------------------------*/
