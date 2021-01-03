@@ -7,12 +7,18 @@ gem 'rails', '~> 6.1.0'
 
 # The administration framework for Ruby on Rails.
 gem 'activeadmin', '~> 2.9'
+# ActiveRecord backend for Delayed::Job
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.7', '>= 4.7.3'
 # Adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.1'
+# Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+gem 'figaro', '~> 1.2'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.0'
+# Agnostic pagination in plain ruby: it works with any framework
+gem 'pagy', '~> 3.10'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Object oriented authorization for Rails applications
@@ -27,7 +33,8 @@ gem 'webpacker', '~> 5.0'
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# Easing the form object pattern in Rails applications.
+gem 'yaaf', '~> 0.1.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -49,6 +56,12 @@ group :development, :test do
 end
 
 group :development do
+  # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+  gem 'annotate', '~> 3.1', '>= 3.1.1'
+  # Provides a better error page for Rails and other Rack apps.
+  gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  # Provides the Binding#of_caller method.
+  gem 'binding_of_caller', '~> 1.0'
   # Brakeman is a static analysis tool which checks Ruby on Rails applications
   # for security vulnerabilities.
   gem 'brakeman', '~> 4.10', '>= 4.10.1'
@@ -56,6 +69,8 @@ group :development do
   # in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   # gem 'rack-mini-profiler', '~> 2.0'
+  # Will open an email preview in the browser instead of sending.
+  gem 'letter_opener', '~> 1.7'
   # Listens to file modifications and notifies you about the changes
   gem 'listen', '~> 3.3'
   # A code metric tool for rails codes, written in Ruby.
