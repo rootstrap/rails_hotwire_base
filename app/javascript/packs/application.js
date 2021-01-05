@@ -5,7 +5,7 @@
 
 import Rails from '@rails/ujs';
 import * as ActiveStorage from '@rails/activestorage';
-import '@hotwired/turbo';
+import '@hotwired/turbo-rails';
 import '../channels';
 import '../controllers';
 
