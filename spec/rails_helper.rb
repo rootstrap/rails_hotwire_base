@@ -20,6 +20,11 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/core'
 require 'spec_helper'
 require 'rspec/rails'
+require 'factory_bot_rails'
+require 'webmock/rspec'
+require 'shoulda/matchers'
+require 'pundit/rspec'
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -37,6 +42,11 @@ RSpec.configure do |config|
 
   config.include Shoulda::Matchers::ActiveModel, type: :form
   config.include Shoulda::Matchers::ActiveRecord, type: :form
+  config.include FactoryBot::Syntax::Methods
+
+  config.before do
+    ActionMailer::Base.deliveries.clear
+  end
 end
 
 Shoulda::Matchers.configure do |config|
