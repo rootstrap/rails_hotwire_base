@@ -15,7 +15,8 @@
 #
 #  index_admin_users_on_email                 (email) UNIQUE
 #  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
-#
+require 'rails_helper'
+
 RSpec.describe AdminUser do
   pending "add some examples to (or delete) #{__FILE__}"
 end
