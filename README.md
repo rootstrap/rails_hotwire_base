@@ -6,7 +6,7 @@
 
 Rails + Hotwire Base is a boilerplate project for full-stack Rails apps with a modern SPA-like experience. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 6 and Ruby 2.7.
 
-Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
+Finally, it contains a plug and play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
 ## Features
 
