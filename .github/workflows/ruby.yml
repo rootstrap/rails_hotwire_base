@@ -70,7 +70,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
       - name: Ruby gem cache
@@ -106,7 +105,13 @@ jobs:
           sudo apt-get -yqq install libpq-dev
       - name: Install dependencies
         run: bundle install
-
+      - name: Setup CodeClimate
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+        env:
+          CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
       - name: Setup Database
         env:
           PGHOST: localhost
@@ -124,3 +129,8 @@ jobs:
           SERVER_HOST: localhost
         run: |
           bundle exec rspec
+      - name: Report to CodeClimate
+        run: |
+          ./cc-test-reporter after-build --exit-code 0
+        env:
+          CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
