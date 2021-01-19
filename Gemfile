@@ -17,6 +17,9 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'figaro', '~> 1.2'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.0'
+# Omniauth to login with google and other providers
+gem 'omniauth', '1.9.1' # TODO: we can use '~> 2.0' once this gets merged: https://github.com/heartcombo/devise/pull/5327/files
+gem 'omniauth-google-oauth2', '~> 0.8.1'
 # Agnostic pagination in plain ruby: it works with any framework
 gem 'pagy', '~> 3.10'
 # Use postgresql as the database for Active Record
