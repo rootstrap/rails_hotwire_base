@@ -85,7 +85,7 @@ detectors:
   UncommunicativeMethodName:
     enabled: true
     exclude:
-      - "Users::OmniauthCallbacksController"
+      - "Users::OmniauthCallbacksController#google_oauth2"
     reject:
       - "/^[a-z]$/"
       - "/[0-9]$/"
@@ -117,6 +117,7 @@ detectors:
       - "/[A-Z]/"
     accept:
       - _
+      - e
   UnusedParameters:
     enabled: true
   UnusedPrivateMethod:
