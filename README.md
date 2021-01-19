@@ -1,24 +1,6 @@
-# README
+# Rails Hotwire base
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Features
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [Google Sign Up](https://github.com/zquestz/omniauth-google-oauth2): [Setup the client](https://github.com/zquestz/omniauth-google-oauth2#google-api-setup)
+and allow users to sign up to your site with their Google accounts.
