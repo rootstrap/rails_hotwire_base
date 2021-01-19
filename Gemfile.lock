@@ -226,6 +226,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.0-x86-mingw32)
       racc (~> 1.4)
+    nokogiri (1.11.0-x86_64-darwin)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (3.10.0)
     parallel (1.20.1)
@@ -441,6 +443,7 @@ PLATFORMS
   x64-mingw32
   x86-mingw32
   x86-mswin32
+  x86_64-darwin-18
 
 DEPENDENCIES
   activeadmin (~> 2.9)
@@ -489,4 +492,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.0.rc.1
+   2.2.0
