@@ -24,7 +24,3 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - lib/tasks/auto_annotate_models.rake
-
-Rails/SaveBang:
-  Exclude:
-    - app/services/omniauth_sign_in_service.rb
