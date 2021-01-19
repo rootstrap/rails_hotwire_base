@@ -407,6 +407,8 @@ GEM
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
     uniform_notifier (1.13.0)
+    view_component (2.24.0)
+      activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -485,6 +487,7 @@ DEPENDENCIES
   spring
   tailwindcss-rails (~> 0.3.0)
   tzinfo-data
+  view_component (~> 2.24)
   web-console (>= 4.1.0)
   webdrivers
   webmock (~> 3.11)

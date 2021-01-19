@@ -1,26 +1,27 @@
-<h2>Log in</h2>
+<div class="flex justify-center">
+  <div class="bg-gray-100 flex flex-col justify-center mt-16 px-28 py-8 ring-2 ring-gray-200 rounded-sm">
 
-<%= form_with(model: resource, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <span class="text-2xl">Log in</span>
+
+    <%= form_with(model: resource, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+      <div class="my-5">
+        <%= render(FieldComponent.new(:email, form: f, type: :email, placeholder: 'Email', autofocus: true, autocomplete: 'email')) %>
+      </div>
+
+      <div class="my-5">
+        <%= render(FieldComponent.new(:password, form: f, type: :password, placeholder: 'Password', autocomplete: 'current-password')) %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="my-5">
+          <%= f.check_box :remember_me, class: %w[cursor-pointer] %>
+          <%= f.label :remember_me, class: %w[cursor-pointer] %>
+        </div>
+      <% end %>
+
+      <%= render(ButtonComponent.new) { 'Log in' } %>
+    <% end %>
+
+    <%= render 'users/shared/links' %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
