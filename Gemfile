@@ -100,7 +100,7 @@ group :test do
   # Provides RSpec- and Minitest-compatible one-liners to test common Rails functionality
   gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
   # Code coverage for Ruby
-  gem 'simplecov', '~> 0.20.0', require: false
+  gem 'simplecov', '~> 0.17.0', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
