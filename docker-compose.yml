@@ -1,0 +1,35 @@
+version: '3.0'
+
+services:
+  web:
+    build: .
+    entrypoint: >
+      bash -c "
+      rm -f tmp/pids/server.pid
+      && bundle exec rails s -b 0.0.0.0 -p 3000"
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/src/myapp
+    links:
+      - 'db:db'
+      - 'redis:redis'
+    depends_on:
+      - db
+      - redis
+    environment:
+      RAILS_ENV: 'production'
+  db:
+    image: postgres:11
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  redis:
+    image: redis:6.0.10
+    command: redis-server
+    volumes:
+      - 'redis_data:/data'
+volumes:
+  db_data:
+  redis_data:
