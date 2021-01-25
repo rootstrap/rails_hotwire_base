@@ -422,6 +422,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (0.1.2)
       rails (>= 6.0.0)
+    tailwindcss-rails (0.3.0)
+      rails (>= 6.0.0)
     thor (1.0.1)
     tilt (2.0.10)
     turbo-rails (0.5.3)
@@ -510,6 +512,7 @@ DEPENDENCIES
   shoulda-matchers (~> 4.4, >= 4.4.1)
   simplecov (~> 0.17.0)
   spring
+  tailwindcss-rails (~> 0.3.0)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers

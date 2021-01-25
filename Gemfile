@@ -30,6 +30,8 @@ gem 'pundit', '~> 2.1'
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
+# An utility first CSS framework
+gem 'tailwindcss-rails', '~> 0.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Use Redis adapter to run Action Cable in production
