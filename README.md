@@ -42,10 +42,10 @@ This template comes with:
 - [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
 - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/heartcombo/devise) for basic auth
+- [Dotenv](https://github.com/bkeepers/dotenv) for handling environment variables
 - [Draper](https://github.com/drapergem/draper) for decorators
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
-- [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Omniauth Google Oauth2](https://github.com/zquestz/omniauth-google-oauth2) for Google Sign Up/Sign in
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
