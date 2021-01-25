@@ -47,6 +47,7 @@ This template comes with:
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
+- [Omniauth Google Oauth2](https://github.com/zquestz/omniauth-google-oauth2) for Google Sign Up/Sign in
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
