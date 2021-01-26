@@ -28,7 +28,9 @@ feature 'Edit user' do
       fill_in 'Current password', with: password
       click_on 'Update'
 
-      expect(page).to have_text('Your account has been updated successfully')
+      expect(page).to have_text(
+        'You updated your account successfully, but we need to verify your new email address'
+      )
       expect(page).to have_current_path(root_path)
     end
   end
