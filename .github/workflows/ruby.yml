@@ -126,7 +126,6 @@ jobs:
           PGUSER: postgres
           PGPASSWORD: postgres
           RAILS_ENV: test
-          SERVER_HOST: localhost
         run: |
           bundle exec rspec
       - name: Report to CodeClimate

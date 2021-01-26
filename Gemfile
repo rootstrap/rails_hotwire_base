@@ -13,8 +13,6 @@ gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 # Adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.1'
-# Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
-gem 'figaro', '~> 1.2'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.0'
 # Omniauth to login with google and other providers
@@ -51,6 +49,8 @@ group :development, :test do
   gem 'bullet', '~> 6.1', '>= 6.1.2'
   # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer
   gem 'factory_bot_rails', '~> 6.1'
+  # dotenv-rails handles environment variables in development and testing environments
+  gem 'dotenv-rails', '~> 2.7.6'
   # Combine 'pry' with 'byebug'. Adds 'step', 'next', 'finish', 'continue'
   # and 'break' commands to control execution.
   gem 'pry-byebug', '~> 3.9'
