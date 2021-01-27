@@ -15,7 +15,8 @@ feature 'User sign up' do
       fill_in 'Password confirmation', with: password
       click_on 'Sign up'
 
-      expect(page).to have_text('Welcome! You have signed up successfully')
+      expect(page).to have_text('A message with a confirmation link has been sent to your email address.')
+      expect(page).to have_text('Please follow the link to activate your account')
       expect(page).to have_current_path(root_path)
     end
   end
