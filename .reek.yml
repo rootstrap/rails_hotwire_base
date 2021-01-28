@@ -10,7 +10,8 @@ detectors:
     exclude: []
   ControlParameter:
     enabled: true
-    exclude: []
+    exclude:
+      - "/.*Helper/"
   DataClump:
     enabled: true
     exclude: []
@@ -19,7 +20,7 @@ detectors:
   DuplicateMethodCall:
     enabled: true
     exclude: []
-    max_calls: 1
+    max_calls: 2
     allow_calls: []
   FeatureEnvy:
     enabled: true
@@ -83,7 +84,8 @@ detectors:
     max_statements: 12
   UncommunicativeMethodName:
     enabled: true
-    exclude: []
+    exclude:
+      - "Users::OmniauthCallbacksController#google_oauth2"
     reject:
       - "/^[a-z]$/"
       - "/[0-9]$/"
@@ -115,6 +117,7 @@ detectors:
       - "/[A-Z]/"
     accept:
       - _
+      - e
   UnusedParameters:
     enabled: true
   UnusedPrivateMethod:

@@ -21,6 +21,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
