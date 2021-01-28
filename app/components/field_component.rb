@@ -6,7 +6,7 @@ class FieldComponent < ViewComponent::Base
     @name = name
     @type = type
     @form = form
-    @css_class = css_class
+    @css_class = Array(css_class)
     @options = options
   end
 
@@ -18,23 +18,22 @@ class FieldComponent < ViewComponent::Base
 
   def base_classes
     %w[
-      flex-1
       appearance-none
-      border
-      border-transparent
-      w-full
-      py-2
-      px-4
-      bg-white
-      text-gray-700
-      placeholder-gray-400
-      shadow-md
       rounded-md
-      text-base
+      relative
+      block
+      w-full
+      px-3
+      py-2
+      border
+      border-gray-300
+      placeholder-gray-500
+      text-gray-900
       focus:outline-none
-      focus:ring-2
       focus:ring-black
-      focus:border-transparent
+      focus:border-black
+      focus:z-10
+      sm:text-sm
     ]
   end
 end

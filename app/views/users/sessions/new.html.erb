@@ -1,27 +1,62 @@
-<div class="flex justify-center">
-  <div class="bg-gray-100 flex flex-col justify-center mt-16 px-28 py-8 ring-2 ring-gray-200 rounded-sm">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Sign in to your account
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Or
+        <%= link_to 'sign up', new_registration_path(resource_name), class: %w[link] %>
+      </p>
+    </div>
 
-    <span class="text-2xl">Log in</span>
-
-    <%= form_with(model: resource, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-      <div class="my-5">
-        <%= render(FieldComponent.new(:email, form: f, type: :email, placeholder: 'Email', autofocus: true, autocomplete: 'email')) %>
-      </div>
-
-      <div class="my-5">
-        <%= render(FieldComponent.new(:password, form: f, type: :password, placeholder: 'Password', autocomplete: 'current-password')) %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="my-5">
-          <%= f.check_box :remember_me, class: %w[cursor-pointer] %>
-          <%= f.label :remember_me, class: %w[cursor-pointer] %>
+    <%= fields_for :user %>
+    <%= form_with(model: resource, url: session_path(resource_name), data: { turbo: false }, class: %w[mt-8 space-y-6]) do |f| %>
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= render(FieldComponent.new(:email, form: f, css_class: %w[rounded-b-none rounded-t-md], type: :email, placeholder: 'Email', autofocus: true, autocomplete: 'email', required: true)) %>
         </div>
+        <div>
+          <%= render(FieldComponent.new(:password, form: f, css_class: %w[rounded-t-none rounded-b-md], type: :password, placeholder: 'Password', autocomplete: 'current-password', required: true)) %>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <%= f.check_box :remember_me, class: %w[h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer] %>
+          <%= f.label :remember_me, class: %w[ml-2 block text-sm text-gray-900] %>
+        </div>
+
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <div class="text-sm">
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class: %w[link] %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <%= render(ButtonComponent.new) do %>
+        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+          <%= render partial: 'shared/icons/lock_closed', locals: { css_class: %w[h-5 w-5 text-white] } %>
+        </span>
+        Sign in
       <% end %>
 
-      <%= render(ButtonComponent.new) { 'Log in' } %>
+      <% if devise_mapping.omniauthable? %>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= render(ButtonComponent.new) do %>
+            <% if omniauth_provider_icon(provider) %>
+              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                <%= render partial: "shared/icons/#{omniauth_provider_icon(provider)}", locals: { css_class: %w[h-5 w-5 text-white] } %>
+              </span>
+            <% end %>
+
+            <%= link_to "Sign in with #{omniauth_provider_name(provider)}", omniauth_authorize_path(resource_name, provider) %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     <% end %>
 
-    <%= render 'users/shared/links' %>
   </div>
 </div>

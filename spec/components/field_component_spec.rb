@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe FieldComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:form) { double(:form) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'calls the form to create a text field' do
+    expect(form).to receive(:text_field) do |name, options|
+      expect(name).to eq(:email)
+      expect(options[:type]).to eq('text')
+    end
+
+    render_inline(FieldComponent.new(:email, form: form))
+  end
 end

@@ -1,33 +1,57 @@
-<h2>Sign up</h2>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Sign up
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        <%- if devise_mapping.registerable? %>
+          Or
+          <%= link_to 'sign in', new_session_path(resource_name), class: %w[link] %>
+        <% end %>
+      </p>
+    </div>
 
-<%= form_with(model: resource, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+    <%= form_with(model: resource, url: registration_path(resource_name), data: { turbo: false }, class: %w[mt-8 space-y-6]) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div>
+        <div class="my-5">
+          <%= render(FieldComponent.new(:email, form: f, type: :email, placeholder: 'Email', autofocus: true, autocomplete: 'email', required: true)) %>
+        </div>
+        <div class="my-5">
+          <%= render(FieldComponent.new(:password, form: f, type: :password, placeholder: 'Password', autocomplete: 'new-password', required: true)) %>
+        </div>
+
+        <div class="my-5">
+          <%= render(FieldComponent.new(:password_confiirmation, form: f, type: :password, placeholder: 'Password Confirmation', autocomplete: 'new-password', required: true)) %>
+        </div>
+      </div>
+
+      <%= render(ButtonComponent.new(text: 'Sign up')) %>
+
+      <% if devise_mapping.omniauthable? %>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= render(ButtonComponent.new) do %>
+            <% if omniauth_provider_icon(provider) %>
+              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                <%= render partial: "shared/icons/#{omniauth_provider_icon(provider)}", locals: { css_class: %w[h-5 w-5 text-white] } %>
+              </span>
+            <% end %>
+
+            <%= link_to "Sign up with #{omniauth_provider_name(provider)}", omniauth_authorize_path(resource_name, provider) %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%- if devise_mapping.confirmable? %>
+        <div class="mt-5">
+          <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: %w[link] %>
+          <br/>
+        </div>
+      <% end %>
+
+    <% end %>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
