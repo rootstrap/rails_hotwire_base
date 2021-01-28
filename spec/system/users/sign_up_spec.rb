@@ -8,38 +8,32 @@ feature 'User sign up' do
   let(:sign_un_page) { PageObjects::SignUp.new }
 
   feature 'with correct data' do
-    before do
-      sign_un_page.submit(email, password, password)
-    end
-
     scenario 'signs up successfully' do
-      expect(page).to have_text('A message with a confirmation link has been sent to your email address.')
-      expect(page).to have_text('Please follow the link to activate your account')
+      sign_un_page.visit_page.fill_in_with(email, password, password).submit
+
+      expect(sign_un_page).to have_confirmation_link_sent_message
+      expect(sign_un_page).to have_follow_the_link_message
       expect(page).to have_current_path(root_path)
     end
   end
 
   feature 'with incorrect data' do
-    before do
-      sign_un_page.submit(email, password, 'wrong_confirmation')
-    end
-
     scenario 'fails to sign up' do
-      expect(page).to have_text('1 error prohibited this user from being saved')
-      expect(page).to have_text("Password confirmation doesn't match Password")
+      sign_un_page.visit_page.fill_in_with(email, password, 'wrong_confirmation').submit
+
+      expect(sign_un_page).to have_user_not_saved_error_message
+      expect(sign_un_page).to have_password_confirmation_not_match_error_message
     end
   end
 
   feature 'with other users email' do
     let!(:user) { create(:user, email: email) }
 
-    before do
-      sign_un_page.submit(email, password, password)
-    end
-
     scenario 'fails to sign up' do
-      expect(page).to have_text('1 error prohibited this user from being saved')
-      expect(page).to have_text('Email has already been taken')
+      sign_un_page.visit_page.fill_in_with(email, password, password).submit
+
+      expect(sign_un_page).to have_user_not_saved_error_message
+      expect(sign_un_page).to have_email_already_taken_error_message
     end
   end
 end

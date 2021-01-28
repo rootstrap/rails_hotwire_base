@@ -7,31 +7,19 @@ feature 'User reset password' do
   let(:reset_password_page) { PageObjects::ResetPassword.new }
 
   feature 'with an existing email' do
-    before do
-      reset_password_page.submit(user.email)
-    end
-
     scenario 'shows message that an email was sent if email address exists' do
-      expect(page).to have_text(
-        'If your email address exists in our database, '\
-        'you will receive a password recovery link at your email address '\
-        'in a few minutes'
-      )
+      reset_password_page.visit_page.fill_in_with(user.email).submit
+
+      expect(reset_password_page).to have_password_recovery_email_sent_message
       expect(page).to have_current_path(new_user_session_path)
     end
   end
 
   feature 'with an non-existent email' do
-    before do
-      reset_password_page.submit(user.email)
-    end
-
     scenario 'shows message that an email was sent if email address exists' do
-      expect(page).to have_text(
-        'If your email address exists in our database, '\
-        'you will receive a password recovery link at your email address '\
-        'in a few minutes'
-      )
+      reset_password_page.visit_page.fill_in_with(user.email).submit
+
+      expect(reset_password_page).to have_password_recovery_email_sent_message
     end
   end
 end

@@ -9,12 +9,10 @@ feature 'Edit user' do
   let(:edit_user_page) { PageObjects::EditUser.new }
 
   feature 'being logged out' do
-    before do
-      edit_user_page
-    end
-
     scenario 'can not access page' do
-      expect(page).to have_text('You need to sign in or sign up before continuing')
+      edit_user_page.visit_page
+
+      expect(edit_user_page).to have_sign_in_required_message
       expect(page).to have_current_path(new_user_session_path)
     end
   end
@@ -22,13 +20,12 @@ feature 'Edit user' do
   feature 'being logged in' do
     before do
       sign_in(user)
-      edit_user_page.submit(new_email, password)
     end
 
     scenario 'can change the user data' do
-      expect(page).to have_text(
-        'You updated your account successfully, but we need to verify your new email address'
-      )
+      edit_user_page.visit_page.fill_in_with(new_email, password).submit
+
+      expect(edit_user_page).to have_updated_account_message
       expect(page).to have_current_path(root_path)
     end
   end
