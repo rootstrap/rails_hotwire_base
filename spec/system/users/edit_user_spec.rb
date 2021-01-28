@@ -23,7 +23,9 @@ feature 'Edit user' do
     end
 
     scenario 'can change the user data' do
-      edit_user_page.visit_page.fill_in_with(new_email, password).submit
+      edit_user_page.visit_page
+      edit_user_page.fill_in_with(new_email, password)
+      edit_user_page.submit
 
       expect(edit_user_page).to have_updated_account_message
       expect(page).to have_current_path(root_path)

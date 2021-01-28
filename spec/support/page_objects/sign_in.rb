@@ -7,15 +7,11 @@ module PageObjects
 
     def visit_page
       visit new_user_session_path
-
-      self
     end
 
     def fill_in_with(email, password)
       fill_in 'Email', with: email
       fill_in 'Password', with: password
-
-      self
     end
 
     def submit

@@ -12,7 +12,9 @@ feature 'User sign in' do
 
     feature 'with correct credentials' do
       scenario 'signs in successfully' do
-        sign_in_page.visit_page.fill_in_with(email, password).submit
+        sign_in_page.visit_page
+        sign_in_page.fill_in_with(email, password)
+        sign_in_page.submit
 
         expect(sign_in_page).to have_success_message
         expect(page).to have_current_path(root_path)
@@ -21,7 +23,9 @@ feature 'User sign in' do
 
     feature 'with incorrect credentials' do
       scenario 'fails to sign in' do
-        sign_in_page.visit_page.fill_in_with(email, 'wrong_password').submit
+        sign_in_page.visit_page
+        sign_in_page.fill_in_with(email, 'wrong_password')
+        sign_in_page.submit
 
         expect(sign_in_page).to have_invalid_credentials_error_message
         expect(page).to have_current_path(new_user_session_path)
@@ -33,7 +37,9 @@ feature 'User sign in' do
     let!(:user) { create(:user, email: email, password: password, confirmed_at: nil) }
 
     scenario 'fails to sign in' do
-      sign_in_page.visit_page.fill_in_with(email, password).submit
+      sign_in_page.visit_page
+      sign_in_page.fill_in_with(email, password)
+      sign_in_page.submit
 
       expect(sign_in_page).to have_unconfirmed_email_error_message
       expect(page).to have_current_path(new_user_session_path)
