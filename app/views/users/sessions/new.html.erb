@@ -10,7 +10,6 @@
       </p>
     </div>
 
-    <%= fields_for :user %>
     <%= form_with(model: resource, url: session_path(resource_name), data: { turbo: false }, class: %w[mt-8 space-y-6]) do |f| %>
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
