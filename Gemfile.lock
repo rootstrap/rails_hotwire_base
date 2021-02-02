@@ -173,7 +173,7 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
-    i18n (1.8.7)
+    i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.12.0)
       actionpack (>= 5.2, < 6.2)
@@ -463,7 +463,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yaaf (0.1.1)
+    yaaf (0.2.0)
       activemodel (>= 4, < 7)
       activerecord (>= 4, < 7)
     zeitwerk (2.4.2)
@@ -521,7 +521,7 @@ DEPENDENCIES
   webdrivers
   webmock (~> 3.11)
   webpacker (~> 5.0)
-  yaaf (~> 0.1.1)
+  yaaf (~> 0.2.0)
 
 RUBY VERSION
    ruby 2.6.6p146
