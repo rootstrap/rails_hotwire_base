@@ -6,12 +6,13 @@ feature 'Edit user' do
   let(:new_email) { Faker::Internet.email }
   let(:password) { Faker::Internet.password(min_length: 8) }
   let!(:user) { create(:user, password: password) }
+  let(:edit_user_page) { PageObjects::EditUser.new }
 
   feature 'being logged out' do
     scenario 'can not access page' do
-      visit edit_user_registration_path
+      edit_user_page.visit_page
 
-      expect(page).to have_text('You need to sign in or sign up before continuing')
+      expect(edit_user_page).to have_sign_in_required_message
       expect(page).to have_current_path(new_user_session_path)
     end
   end
@@ -22,15 +23,11 @@ feature 'Edit user' do
     end
 
     scenario 'can change the user data' do
-      visit edit_user_registration_path
+      edit_user_page.visit_page
+      edit_user_page.fill_in_with(new_email, password)
+      edit_user_page.submit
 
-      fill_in 'Email', with: new_email
-      fill_in 'Current password', with: password
-      click_on 'Update'
-
-      expect(page).to have_text(
-        'You updated your account successfully, but we need to verify your new email address'
-      )
+      expect(edit_user_page).to have_updated_account_message
       expect(page).to have_current_path(root_path)
     end
   end

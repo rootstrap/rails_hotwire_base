@@ -39,7 +39,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Easing the form object pattern in Rails applications.
-gem 'yaaf', '~> 0.1.1'
+gem 'yaaf', '~> 0.2.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

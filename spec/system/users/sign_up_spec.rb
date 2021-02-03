@@ -5,33 +5,28 @@ require 'rails_helper'
 feature 'User sign up' do
   let(:email) { Faker::Internet.email }
   let(:password) { Faker::Internet.password(min_length: 8) }
+  let(:sign_un_page) { PageObjects::SignUp.new }
 
   feature 'with correct data' do
     scenario 'signs up successfully' do
-      visit new_user_registration_path
+      sign_un_page.visit_page
+      sign_un_page.fill_in_with(email, password, password)
+      sign_un_page.submit
 
-      fill_in 'Email', with: email
-      fill_in 'Password', with: password
-      fill_in 'Password confirmation', with: password
-      click_on 'Sign up'
-
-      expect(page).to have_text('A message with a confirmation link has been sent to your email address.')
-      expect(page).to have_text('Please follow the link to activate your account')
+      expect(sign_un_page).to have_confirmation_link_sent_message
+      expect(sign_un_page).to have_follow_the_link_message
       expect(page).to have_current_path(root_path)
     end
   end
 
   feature 'with incorrect data' do
     scenario 'fails to sign up' do
-      visit new_user_registration_path
+      sign_un_page.visit_page
+      sign_un_page.fill_in_with(email, password, 'wrong_confirmation')
+      sign_un_page.submit
 
-      fill_in 'Email', with: email
-      fill_in 'Password', with: password
-      fill_in 'Password confirmation', with: 'wrong confirmation'
-      click_on 'Sign up'
-
-      expect(page).to have_text('1 error prohibited this user from being saved')
-      expect(page).to have_text("Password confirmation doesn't match Password")
+      expect(sign_un_page).to have_user_not_saved_error_message
+      expect(sign_un_page).to have_password_confirmation_not_match_error_message
     end
   end
 
@@ -39,15 +34,12 @@ feature 'User sign up' do
     let!(:user) { create(:user, email: email) }
 
     scenario 'fails to sign up' do
-      visit new_user_registration_path
+      sign_un_page.visit_page
+      sign_un_page.fill_in_with(email, password, password)
+      sign_un_page.submit
 
-      fill_in 'Email', with: email
-      fill_in 'Password', with: password
-      fill_in 'Password confirmation', with: password
-      click_on 'Sign up'
-
-      expect(page).to have_text('1 error prohibited this user from being saved')
-      expect(page).to have_text('Email has already been taken')
+      expect(sign_un_page).to have_user_not_saved_error_message
+      expect(sign_un_page).to have_email_already_taken_error_message
     end
   end
 end
