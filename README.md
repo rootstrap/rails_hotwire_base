@@ -80,8 +80,8 @@ With `rails code_analysis` you can run the code analysis tool, you can omit rule
 ## Configuring Code Climate
 
 1. After adding the project to CC, go to `Repo Settings`
-2. On the `Test Coverage` tab, copy the `Test Reporter ID`
-3. Set the current value of `CC_TEST_REPORTER_ID` in the CI project env variables
+1. On the `Test Coverage` tab, copy the `Test Reporter ID`
+1. Set the current value of `CC_TEST_REPORTER_ID` in the CI project env variables
 
 ## Code Owners
 
