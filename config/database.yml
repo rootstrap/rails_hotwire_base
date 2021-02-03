@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: rails_hotwire_base_production
-  username: rails_hotwire_base
-  password: <%= ENV['RAILS_HOTWIRE_BASE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
