@@ -19,12 +19,9 @@ end
 # The list of feature flags the application starts with
 feature_flags = ['test']
 
-def initialize_feature_flags(feature_flags)
-  feature_flags.each do |feature_flag|
-    next if Flipper.exist?(feature_flag)
+# Initialize the feature flags
+feature_flags.each do |feature_flag|
+  next if Flipper.exist?(feature_flag)
 
-    Flipper.disable(feature_flag)
-  end
+  Flipper.disable(feature_flag)
 end
-
-initialize_feature_flags(feature_flags)
