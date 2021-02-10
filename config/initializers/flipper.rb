@@ -15,13 +15,3 @@ Flipper.configure do |config|
     Flipper.new(cached_adapter)
   end
 end
-
-# The list of feature flags the application starts with
-feature_flags = ['test']
-
-# Initialize the feature flags
-feature_flags.each do |feature_flag|
-  next if Flipper.exist?(feature_flag)
-
-  Flipper.disable(feature_flag)
-end
