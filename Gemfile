@@ -30,6 +30,8 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # An utility first CSS framework
 gem 'tailwindcss-rails', '~> 0.3.0'
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails
+gem 'view_component', '~> 2.24', require: 'view_component/engine'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Use Redis adapter to run Action Cable in production

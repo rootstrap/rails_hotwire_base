@@ -15,7 +15,7 @@ module PageObjects
     end
 
     def submit
-      click_on 'Log in'
+      click_on 'Sign in'
     end
 
     def has_success_message?

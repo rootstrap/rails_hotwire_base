@@ -7,4 +7,11 @@ module OmniauthHelper
       'Unknown provider'
     end
   end
+
+  def omniauth_provider_icon(provider)
+    case provider
+    when :google_oauth2
+      'google'
+    end
+  end
 end
