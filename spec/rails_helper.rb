@@ -44,6 +44,7 @@ RSpec.configure do |config|
   config.include Shoulda::Matchers::ActiveRecord, type: :form
   config.include ViewComponent::TestHelpers, type: :component
   config.include FactoryBot::Syntax::Methods
+  config.include Helpers::FlipperToggler
 
   config.before do
     ActionMailer::Base.deliveries.clear

@@ -1,3 +1,7 @@
+<% if Flipper.enabled?(:test) %>
+  <p>Flipper is working!</p>
+<% end %>
+
 <% if current_user %>
   <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <% else %>
