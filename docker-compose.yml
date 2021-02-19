@@ -3,14 +3,11 @@ version: '3.0'
 services:
   web:
     build: .
-    entrypoint: >
-      bash -c "
-      rm -f tmp/pids/server.pid
-      && bundle exec rails s -b 0.0.0.0 -p 3000"
     ports:
       - 3000:3000
     volumes:
       - .:/src/myapp
+      - gems:/usr/local/bundle
     links:
       - 'db:db'
       - 'redis:redis'
@@ -18,7 +15,7 @@ services:
       - db
       - redis
     environment:
-      RAILS_ENV: 'production'
+      DB_HOST: db
   db:
     image: postgres:11
     environment:
@@ -33,3 +30,4 @@ services:
 volumes:
   db_data:
   redis_data:
+  gems:
