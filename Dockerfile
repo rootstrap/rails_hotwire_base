@@ -10,6 +10,7 @@ RUN apt-get update -qq && \
 ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/myapp/
 ENV LANG C.UTF-8
+ENV USE_DB=true
 
 RUN mkdir -p $APP_HOME
 
