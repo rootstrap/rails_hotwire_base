@@ -9,127 +9,150 @@ name: CI
 on: [pull_request]
 
 jobs:
-  linters:
-    name: Linters
+  build_image:
+    name: Build Dockerfile
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-      - name: Ruby gem cache
-        uses: actions/cache@v1
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Install gems
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      - name: Setup Node
-        uses: actions/setup-node@v1
+          context: ./
+          file: ./Dockerfile
+          push: false
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          tags: rails_hotwire_base:latest
+          outputs: type=docker,dest=/tmp/rails_hotwire_base.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          node-version: 15.5.0
-      - name: Find yarn cache location
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: JS package cache
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install packages
-        run: |
-          yarn install --pure-lockfile
-      - name: Run Code Quality checks
-        run: |
-          bundle exec rake code_analysis
-          yarn lint
-  tests:
-    name: Tests
+          name: rails_hotwire_base
+          path: /tmp/rails_hotwire_base.tar
+
+  ruby_linter:
+    name: Ruby Linter
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: postgres:11
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_DB: rails_hotwire_base_test
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    needs: build_image
+    env:
+      USE_DB: false
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-      - name: Ruby gem cache
-        uses: actions/cache@v1
+      - name: Download artifact
+        uses: actions/download-artifact@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Install gems
+          name: rails_hotwire_base
+          path: /tmp
+      - name: Load Docker image
         run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 15.5.0
-      - name: Find yarn cache location
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: JS package cache
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install packages
+          docker load --input /tmp/rails_hotwire_base.tar
+      - name: Run Code Quality checks for Ruby
         run: |
-          yarn install --pure-lockfile
-      - name: Install PostgreSQL 11 client
-        run: |
-          sudo apt-get -yqq install libpq-dev
-      - name: Install dependencies
-        run: bundle install
-      - name: Setup CodeClimate
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-        env:
-          CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
-      - name: Setup Database
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          PGPASSWORD: postgres
-          RAILS_ENV: test
-        run: |
-          bundle exec rails db:setup
-      - name: Run tests and upload coverage report
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          PGPASSWORD: postgres
-          RAILS_ENV: test
-        run: |
-          bundle exec rspec
-      - name: Report to CodeClimate
-        run: |
-          ./cc-test-reporter after-build --exit-code 0
-        env:
-          CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
+          docker run -it -e USE_DB=env.USE_DB rails_hotwire_base bundle exec rake code_analysis
+
+  js_linter:
+    name: JS Linter
+    runs-on: ubuntu-latest
+    needs: build_image
+    env:
+      USE_DB: false
+    steps:
+      - name: Run Code Quality checks for Ruby
+        run: docker run -it -e USE_DB=env.USE_DB rails_hotwire_base yarn lint
+
+  # tests:
+  #   name: Tests
+  #   runs-on: ubuntu-latest
+  #   services:
+  #     db:
+  #       image: postgres:11
+  #       env:
+  #         POSTGRES_PASSWORD: postgres
+  #         POSTGRES_USER: postgres
+  #         POSTGRES_DB: rails_hotwire_base_test
+  #       ports:
+  #         - 5432:5432
+  #       options: >-
+  #         --health-cmd pg_isready
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+  #     - name: Setup Ruby
+  #       uses: ruby/setup-ruby@v1
+  #     - name: Ruby gem cache
+  #       uses: actions/cache@v1
+  #       with:
+  #         path: vendor/bundle
+  #         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-gems-
+  #     - name: Install gems
+  #       run: |
+  #         bundle config path vendor/bundle
+  #         bundle install --jobs 4 --retry 3
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 15.5.0
+  #     - name: Find yarn cache location
+  #       id: yarn-cache
+  #       run: echo "::set-output name=dir::$(yarn cache dir)"
+  #     - name: JS package cache
+  #       uses: actions/cache@v1
+  #       with:
+  #         path: ${{ steps.yarn-cache.outputs.dir }}
+  #         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-yarn-
+  #     - name: Install packages
+  #       run: |
+  #         yarn install --pure-lockfile
+  #     - name: Install PostgreSQL 11 client
+  #       run: |
+  #         sudo apt-get -yqq install libpq-dev
+  #     - name: Install dependencies
+  #       run: bundle install
+  #     - name: Setup CodeClimate
+  #       run: |
+  #         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  #         chmod +x ./cc-test-reporter
+  #         ./cc-test-reporter before-build
+  #       env:
+  #         CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
+  #     - name: Setup Database
+  #       env:
+  #         PGHOST: localhost
+  #         PGUSER: postgres
+  #         PGPASSWORD: postgres
+  #         RAILS_ENV: test
+  #       run: |
+  #         bundle exec rails db:setup
+  #     - name: Run tests and upload coverage report
+  #       env:
+  #         PGHOST: localhost
+  #         PGUSER: postgres
+  #         PGPASSWORD: postgres
+  #         RAILS_ENV: test
+  #       run: |
+  #         bundle exec rspec
+  #     - name: Report to CodeClimate
+  #       run: |
+  #         ./cc-test-reporter after-build --exit-code 0
+  #       env:
+  #         CC_TEST_REPORTER_ID: 8ae04c3a51d9442c39e6fa24df0d1a002d7074e10245f136f332b756c4dcd4f9
