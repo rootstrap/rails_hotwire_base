@@ -1,5 +1,5 @@
+# frozen_string_literal: true
+
 class DashboardController < ApplicationController
-  def index
-    # just needed to render the action
-  end
+  def index; end
 end
