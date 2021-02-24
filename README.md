@@ -46,6 +46,7 @@ This template comes with:
 - [Draper](https://github.com/drapergem/draper) for decorators
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
+- [Flipper](https://github.com/jnunemaker/flipper) for feature flags
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Omniauth Google Oauth2](https://github.com/zquestz/omniauth-google-oauth2) for Google Sign Up/Sign in
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
@@ -77,6 +78,7 @@ With `rails code_analysis` you can run the code analysis tool, you can omit rule
 - [Bullet](https://github.com/flyerhzm/bullet#whitelist) You can add exceptions to a bullet initializer or in the controller
 
 ## Configuring Code Climate
+
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
 1. Set the current value of `CC_TEST_REPORTER_ID` in the CI project env variables

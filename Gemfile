@@ -7,14 +7,22 @@ gem 'rails', '~> 6.1.2'
 
 # The administration framework for Ruby on Rails.
 gem 'activeadmin', '~> 2.9'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 # ActiveRecord backend for Delayed::Job
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.7', '>= 4.7.3'
 # Adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.1'
+# For feature flags
+gem 'flipper-active_record', '~> 0.20.3'
+gem 'flipper-active_support_cache_store', '~> 0.20.3'
+gem 'flipper-ui', '~> 0.20.3'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.0'
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 # Omniauth to login with google and other providers
 gem 'omniauth', '1.9.1' # TODO: we can use '~> 2.0' once this gets merged: https://github.com/heartcombo/devise/pull/5327/files
 gem 'omniauth-google-oauth2', '~> 0.8.1'
@@ -26,20 +34,18 @@ gem 'pg', '~> 1.1'
 gem 'pundit', '~> 2.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+# Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # An utility first CSS framework
 gem 'tailwindcss-rails', '~> 0.3.0'
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails
+gem 'view_component', '~> 2.24', require: 'view_component/engine'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
-# Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 # Easing the form object pattern in Rails applications.
 gem 'yaaf', '~> 0.2.0'
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
