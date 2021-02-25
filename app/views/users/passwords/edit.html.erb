@@ -1,25 +1,30 @@
-<h2>Change your password</h2>
-
-<%= form_with(model: resource, url: password_path(resource_name), method: :put, data: { turbo: false }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+<div class="max-w-md px-4">
+  <div>
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      Change your password
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600">
+      <%- if devise_mapping.registerable? %>
+        Or
+        <%= link_to 'sign in', new_session_path(resource_name), class: %w[link] %>
+      <% end %>
+    </p>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <%= form_with(model: resource, url: password_path(resource_name), method: :put, data: { turbo: false }, class: %w[mt-8 space-y-6]) do |f| %>
+    <%= render 'shared/error_messages', resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+    <div>
+      <div class="my-5">
+        <%= render(FieldComponent.new(:password, form: f, type: :password, placeholder: 'Password', autocomplete: 'new-password', required: true)) %>
+      </div>
 
-<%= render "users/shared/links" %>
+      <div class="my-5">
+        <%= render(FieldComponent.new(:password_confirmation, form: f, type: :password, placeholder: 'Password confirmation', autocomplete: 'new-password', required: true)) %>
+      </div>
+    </div>
+
+    <%= render(ButtonComponent.new(text: 'Change my password')) %>
+  <% end %>
+</div>

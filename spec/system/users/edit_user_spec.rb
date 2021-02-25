@@ -28,7 +28,7 @@ feature 'Edit user' do
       edit_user_page.submit
 
       expect(edit_user_page).to have_updated_account_message
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(authenticated_root_path)
     end
   end
 end

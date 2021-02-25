@@ -13,7 +13,16 @@
   </head>
 
   <body>
-    <%= render "shared/notifications" %>
-    <%= yield %>
+    <div class="flex flex-col bg-gray-50">
+      <% if user_signed_in? %>
+        <%= render "shared/nav" %>
+      <% end %>
+      <%= render "shared/notifications" %>
+      <main class="flex flex-col justify-center items-center min-h-screen w-full">
+        <div class="max-w-7xl py-6 sm:px-6 lg:px-8">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
