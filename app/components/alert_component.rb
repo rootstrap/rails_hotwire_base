@@ -32,11 +32,11 @@ class AlertComponent < ViewComponent::Base
   def color
     case role
     when :alert, :error
-      'red'
+      :red
     when :success
-      'green'
+      :green
     else
-      'indigo'
+      :indigo
     end
   end
 end

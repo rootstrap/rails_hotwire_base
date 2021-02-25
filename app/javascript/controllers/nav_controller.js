@@ -3,7 +3,7 @@ import { Controller } from 'stimulus';
 export default class extends Controller {
   static targets = ['userMenu', 'mobileMenu', 'mobileOpenMenuIcon', 'mobileCloseMenuIcon']
 
-  showOrHideUserMenu() {
+  toggleUserMenuVisibility() {
     if (this.userMenuTarget.classList.contains('opacity-0')) {
       this.userMenuTarget.classList.remove('transition', 'ease-in', 'duration-100');
       this.userMenuTarget.classList.add('transition', 'ease-out', 'duration-100');
@@ -17,7 +17,7 @@ export default class extends Controller {
     }
   };
 
-  showOrHideMobileMenu() {
+  toggleMobileMenuVisibility() {
     if (this.mobileOpenMenuIconTarget.classList.contains('block')) {
       this.mobileMenuTarget.classList.replace('hidden', 'block');
       this.mobileOpenMenuIconTarget.classList.replace('block', 'hidden');

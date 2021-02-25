@@ -15,7 +15,7 @@ feature 'User sign up' do
 
       expect(sign_un_page).to have_confirmation_link_sent_message
       expect(sign_un_page).to have_follow_the_link_message
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(authenticated_root_path)
     end
   end
 

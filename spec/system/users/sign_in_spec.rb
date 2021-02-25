@@ -17,7 +17,7 @@ feature 'User sign in' do
         sign_in_page.submit
 
         expect(sign_in_page).to have_success_message
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(authenticated_root_path)
       end
     end
 
