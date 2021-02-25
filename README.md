@@ -67,6 +67,22 @@ This template comes with:
 - Set your mail sender in `config/initializers/devise.rb`
 - Config your timezone accordingly in `application.rb`.
 
+# Hotwire with Redis
+
+[Turbo Streams](https://github.com/hotwired/turbo-rails#turbo-streams) uses [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html) to deliver asynchronous updates to subscribers. This feature allows the user to receive live updates through websockets.
+
+Action Cable relies on `redis` as [subscription adapter](https://guides.rubyonrails.org/action_cable_overview.html#subscription-adapter) for production environment.
+
+With just a little configuration you can make it work.
+
+```yaml
+# config/cable.yml
+
+production:
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+```
+
 ## Code quality
 
 With `rails code_analysis` you can run the code analysis tool, you can omit rules with:
