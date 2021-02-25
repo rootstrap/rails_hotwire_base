@@ -4,7 +4,7 @@
 [![Code Climate](https://api.codeclimate.com/v1/badges/6b4e50e445c617d9f25d/maintainability)](https://codeclimate.com/github/rootstrap/rails_hotwire_base/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6b4e50e445c617d9f25d/test_coverage)](https://codeclimate.com/github/rootstrap/rails_hotwire_base/test_coverage)
 
-Rails + Hotwire Base is a boilerplate project for full-stack Rails apps with a modern SPA-like experience. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 6 and Ruby 2.7.
+Rails + Hotwire Base is a boilerplate project for full-stack Rails apps with a modern SPA-like experience. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 6 and Ruby 3.0.
 
 Finally, it contains a plug and play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
