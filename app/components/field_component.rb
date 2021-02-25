@@ -7,7 +7,7 @@ class FieldComponent < ViewComponent::Base
     @type = type
     @form = form
     @css_class = Array(css_class)
-    @options = options
+    @options = options.except(:form)
   end
 
   private
