@@ -7,7 +7,6 @@ services:
       - 3000:3000
     volumes:
       - .:/src/myapp
-      - gems:/usr/local/bundle
     links:
       - 'db:db'
       - 'redis:redis'
@@ -30,4 +29,3 @@ services:
 volumes:
   db_data:
   redis_data:
-  gems:
