@@ -20,7 +20,7 @@ gem 'flipper-active_record', '~> 0.20.3'
 gem 'flipper-active_support_cache_store', '~> 0.20.3'
 gem 'flipper-ui', '~> 0.20.3'
 # Use Hotwire to make the app feel like an SPA
-gem 'hotwire-rails', '~> 0.1.0'
+gem 'hotwire-rails', '~> 0.1.3'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # Omniauth to login with google and other providers
