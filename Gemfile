@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.2'
+gem 'rails', '~> 6.1.3'
 
 # The administration framework for Ruby on Rails.
 gem 'activeadmin', '~> 2.9'
