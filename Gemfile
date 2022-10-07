@@ -6,7 +6,7 @@ ruby '3.0.0'
 gem 'rails', '~> 7.0.4'
 
 # The administration framework for Ruby on Rails.
-gem 'activeadmin', '~> 2.9'
+gem 'activeadmin', '~> 2.13', '>= 2.13.1'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # ActiveRecord backend for Delayed::Job
@@ -42,6 +42,8 @@ gem 'sass-rails', '>= 6'
 gem 'tailwindcss-rails', '~> 0.3.0'
 # A framework for building reusable, testable & encapsulated view components in Ruby on Rails
 gem 'view_component', '~> 2.24', require: 'view_component/engine'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 5.0'
 # Easing the form object pattern in Rails applications.
 gem 'yaaf', '~> 2.2'
 
