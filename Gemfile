@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.4'
 
 # The administration framework for Ruby on Rails.
 gem 'activeadmin', '~> 2.9'
@@ -16,9 +16,9 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 # Adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.1'
 # For feature flags
-gem 'flipper-active_record', '~> 0.20.3'
-gem 'flipper-active_support_cache_store', '~> 0.20.3'
-gem 'flipper-ui', '~> 0.20.3'
+gem 'flipper-active_record', '~> 0.23.1'
+gem 'flipper-active_support_cache_store', '~> 0.23.1'
+gem 'flipper-ui', '~> 0.23.1'
 # Use Hotwire to make the app feel like an SPA
 gem 'hotwire-rails', '~> 0.1.3'
 # Use Active Storage variant
@@ -27,7 +27,7 @@ gem 'hotwire-rails', '~> 0.1.3'
 gem 'omniauth', '1.9.1' # TODO: we can use '~> 2.0' once this gets merged: https://github.com/heartcombo/devise/pull/5327/files
 gem 'omniauth-google-oauth2', '~> 0.8.1'
 # Agnostic pagination in plain ruby: it works with any framework
-gem 'pagy', '~> 3.10'
+gem 'pagy', '~> 5.10', '>= 5.10.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Object oriented authorization for Rails applications
@@ -42,17 +42,15 @@ gem 'sass-rails', '>= 6'
 gem 'tailwindcss-rails', '~> 0.3.0'
 # A framework for building reusable, testable & encapsulated view components in Ruby on Rails
 gem 'view_component', '~> 2.24', require: 'view_component/engine'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
 # Easing the form object pattern in Rails applications.
-gem 'yaaf', '~> 0.2.0'
+gem 'yaaf', '~> 2.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Help to kill N+1 queries and unused eager loading.
-  gem 'bullet', '~> 6.1', '>= 6.1.2'
+  gem 'bullet', '~> 7.0', '>= 7.0.3'
   # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer
   gem 'factory_bot_rails', '~> 6.1'
   # dotenv-rails handles environment variables in development and testing environments
@@ -75,7 +73,7 @@ group :development do
   gem 'binding_of_caller', '~> 1.0'
   # Brakeman is a static analysis tool which checks Ruby on Rails applications
   # for security vulnerabilities.
-  gem 'brakeman', '~> 4.10', '>= 4.10.1'
+  gem 'brakeman', '~> 5.2', '>= 5.2.1'
   # Display performance information such as SQL time and flame graphs for each request
   # in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
