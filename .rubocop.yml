@@ -24,3 +24,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - lib/tasks/auto_annotate_models.rake
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/20221007213252_add_service_name_to_active_storage_blobs.active_storage.rb
