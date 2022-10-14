@@ -24,7 +24,7 @@ require 'factory_bot_rails'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
-Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow_localhost: true)

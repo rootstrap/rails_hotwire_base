@@ -7,12 +7,12 @@
     "lint": "npm-run-all --continue-on-error --parallel \"css-lint --fix\" \"js-lint --fix\""
   },
   "dependencies": {
-    "@activeadmin/activeadmin": "^2.9.0",
+    "@activeadmin/activeadmin": "^2.13.1",
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@hotwired/turbo-rails": "^7.0.0-beta.8",
-    "@rails/actioncable": "^6.1.0",
-    "@rails/activestorage": "^6.1.0",
-    "@rails/ujs": "^6.1.0",
+    "@hotwired/turbo-rails": "^7.2.0",
+    "@rails/actioncable": "^7.0.4",
+    "@rails/activestorage": "^7.0.4",
+    "@rails/ujs": "^7.0.4",
     "@rails/webpacker": "^5.2.1",
     "arctic_admin": "^3.2.0",
     "autoprefixer": "^9",
